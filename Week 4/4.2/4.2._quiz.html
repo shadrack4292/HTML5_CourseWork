@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>4.2.1 Animation Techniques</title>
+
+	<style type="text/css">
+		#MyCanvas {
+			border: 1px solid black;
+		}
+	</style>
+
+	
+</head>
+
+    <body onload="init();">
+      <canvas id="myCanvas" width="400" height="400">
+        Your browser does not support the canvas tag.
+      </canvas>
+      <script>
+          var canvas, ctx;
+          var x=100, y=100;
+          var incrementX = 0;
+          function init() {
+             canvas = document.getElementById('myCanvas');
+             ctx=canvas.getContext('2d');
+             window.addEventListener('keydown', handleKeydown, false);
+             window.addEventListener('keyup', handleKeyup, false);
+             requestId = requestAnimationFrame(animationLoop);
+          }
+          function handleKeydown(event) {
+               if (event.keyCode === 37) {
+                   //left key
+                   incrementX = -1;
+               } else if (event.keyCode === 39) {
+                   // right key
+                   incrementX = 1;
+               }
+           }
+           function handleKeyup(event) {
+               incrementX = 0;
+           }
+           function animationLoop() {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.fillRect(x, y, 10, 10);
+              x += incrementX;
+              requestId = requestAnimationFrame(animationLoop);
+           }
+           function start() {
+               // Start the animation loop, targets 60 frames/s
+               requestId = requestAnimationFrame(animationLoop);
+           }
+    </script>
+    </body>
+
+</html>

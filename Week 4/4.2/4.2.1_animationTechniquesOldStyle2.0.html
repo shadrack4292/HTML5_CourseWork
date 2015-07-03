@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>4.2.1 Animation Techniques</title>
+
+	<style type="text/css">
+		#MyCanvas {
+			border: 1px solid black;
+		}
+	</style>
+
+	<script type="text/javascript">
+	var canvas, ctx;
+	var rectangleX = 0;
+
+	function init(){
+		canvas = document.getElementById('MyCanvas');
+		ctx = canvas.getContext('2d');
+		
+		setTimeOut(makeAnimation, 25);
+	}
+
+	function makeAnimation() {
+		// 1 - clear canvas
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		// 2 - draw
+		ctx.fillStyle = "red";
+		ctx.fillRect(rectangleX, 0, 50, 50);
+		// 3 - move
+		rectangleX++;
+	
+		setTimeOut(makeAnimation, 25);
+	}
+	</script>
+</head>
+<body onload="init();">
+	<canvas id="MyCanvas" width="300" height="300"></canvas>
+</body>
+</html>

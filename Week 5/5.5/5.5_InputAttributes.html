@@ -1,0 +1,50 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    	<title>title</title>
+
+    	<style type="text/css">
+    	input:focus:invalid {
+    		background-color: lightPink;
+    	}
+    	</style>
+    </head>
+    <body>
+    <!-- First Name Field: autocomplete is on, required -->
+    <label for="firstName">First name:</label>
+    <input type="text" id="firstName" name="firstName" form="form1" autocomplete="on" required/>
+    <p>
+
+    <!-- Last Name field: autocomplete is off, autofocus, required -->
+    <label for="lastName">Last name:</label>
+    <input type="text" id="lastName" name="lastName" form="form1" autocomplete="off" required autofocus/>
+
+    <!-- Check box field -->
+    <form id="form1" action="#" method="post">
+    <fieldset>
+         <legend>Choose option</legend>
+         <label for="free">Free registering</label>
+         <input type="checkbox" id="free"/>
+         <label for="premium">Premium</label>
+         <input type="checkbox" id="premium"/>
+     
+         <button type="submit">Send form</button>
+    </fieldset>
+    <fieldset>
+    	<legend>List attribute</legend>
+	    <label for="mybrowser">Preferred browser</label>
+	    <input list="browsers" id="mybrowser" />
+		<datalist id="browsers">
+			<option value="Internet Explorer">
+			<option value="Firefox">
+			<option value="Chrome">
+			<option value="Opera">
+			<option value="Safari">
+ 		</datalist>
+    </fieldset>
+    </form>
+
+    <div><img src="sun.jpg"></div>
+    </body>
+    </html>

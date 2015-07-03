@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Forms</title>
+	<script type="text/javascript">
+	var canvas, ctx;
+	var width, height;
+	var x=10, y=10;
+	// Move 3 pixels left or right at each frame
+	var incX = 3;
+	var size = 20;
+	var currentColor = 'red';
+
+	// Called after the DOM is ready (page loaded)
+	function init() {
+		// init the different variables
+		canvas = document.querySelector("#mycanvas");
+		ctx = canvas.getContext('2d');
+		width = canvas.width;
+		height = canvas.height;
+
+		// Set colors
+		ctx.fillStyle = currentColor;
+
+		// Start animation
+		animationLoop();
+	}
+	
+	function animationLoop() {
+		// an animation is : 1) clear canvas and 2) draw shapes, 
+		// 3) move shapes, 4) recall the loop with requestAnimationFrame
+
+		// clear canvas
+		ctx.clearRect(0, 0, width, height);
+		ctx.fillRect(x, y, size, size)
+		ctx.strokeRect(x, y, size, size);
+		// move rectangle
+		x += incX;
+
+		// check collision on left or right
+		if(((x+size) > width) || (x <= 0)) {
+			// cancel move + inverse speed
+			x -= incX;
+			incX = -incX;
+		}
+
+		// animate again at 60 frames/s
+		requestAnimationFrame(animationLoop);
+	}
+
+	function changeSize(event) {
+		//console.log("size change");
+		size = parseInt(event.target.value);
+		document.getElementById("sizeValue").innerHTML = size;
+	}
+
+	function changeLineWidth(event) {
+		ctx.lineWidth = parseInt(event.target.value);
+		document.getElementById("lineWidthValue").innerHTML = ctx.lineWidth;
+	}
+	
+	function changeColor(event) {
+		ctx.fillStyle = event.target.value;
+		console.log(color);
+	}
+
+	</script>
+</head>
+<body onload="init();">
+	<canvas id="mycanvas" width="200" height="50" style="border: 2px solid black"></canvas>
+	<p>
+	<label for="size">Size:</label>
+	<input id="size" type="range" min=2 max=40 value=20 oninput="changeSize(event);">
+	<output id="sizeValue">20</output>
+	<p>
+	<label for="color">Color:</label>
+	<input id="color" type="color" value="#FF0000" oninput="changeColor(event);">
+	<p>
+	<label for="lineWidth">Line Width:</label>
+	<input id="lineWidth" type="range" min=1 max=5 value=1 oninput="changeLineWidth(event);">
+	<output id="lineWidthValue">1</output>
+</body>
+</html>

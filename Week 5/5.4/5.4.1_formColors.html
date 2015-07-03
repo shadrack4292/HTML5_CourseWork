@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "utf-8">
+	<title>Form example</title>
+
+<style type="text/css">
+	fieldset {
+		padding: 10px;
+		width: 350px;
+		border-radius:10px;
+	}
+
+	label {
+		display:inline-block;
+		margin-bottom: 10px
+	}
+
+	label {
+		margin: 5px;
+	}
+
+	input {
+		float: right;
+		margin-right: 70px;
+		width: 150px;
+	}
+
+	input:invalid {
+		background-color: pink;
+	}
+
+	input:valid {
+		background-color: lightBlue;
+	}
+
+	#rangeValue1 {
+		border:1px solid black;
+		padding:2px;
+	}
+	#rangeValue2 {
+		border:1px solid black;
+		padding:2px;
+	}
+
+	output {
+        border:1px solid black;
+        padding:2px;
+    }
+	.custom {
+		width: 60%;
+		height:10px;
+		border-radius: 8px;
+		box-shadow: inset 0 0 10px #333;
+		background-image:linear-gradient(to right, lightGreen, blue 100%, orange);
+		transition: background 450ms;
+	}	
+	/* Change the Slider Button Color Webkit (Opera, Chrome, Safari) */
+	.custom::-webkit-slider-thumb {
+		-webkit-appearance: none !important;
+		background-color: #AAA;
+		background-image:         
+		linear-gradient(to bottom, #EEE, #AAA);     
+		border: 2px solid #999;    
+		height:30px;
+		width:30px;
+		border-radius: 15px;
+	}
+	/* Change the Slider Button Color FireFox */
+	.custom::-moz-range-thumb {
+		background-color: #AAA;
+		background-image:         
+		linear-gradient(to bottom, #EEE, #AAA);     
+		border: 1px solid #999;    
+		height:30px;
+		width:30px;
+		border-radius: 15px;
+	}
+
+</style>
+
+</head>
+<body>
+<form action="myServerComponent.php" method="POST">
+	<fieldset>
+		<legend>Personal Informations</legend>
+		<!-- Name fields -->
+		<label for="firstName">First name:</label>
+		<input type="text" id="firstName" required name="firstName">
+		<br>
+		<label for="lastName">Last name:</label>
+		<input type="text" id="lastName" required name="lastName">
+		<br>
+		<!-- Email field -->
+		<label for="email">Email:</label>
+		<input type="email" id="email" required name="email">
+		<br>
+		<!-- Age Field -->
+		<label for="age">Age:</label>
+		<input type="number" min=0 max=120 step=5 id="age" required name="age">
+		<br>
+		<!-- Select Color -->
+		<label for="colorChooser">Select Color:</label>
+		<input type="color" id="colorChooser" value="ff00ff">
+		<br>
+		<!-- Pick a Wednesday field.  only allow days 7-1-2015 through to 9-30-2015, wednesdays only-->
+		<label for="date">Pick a Wed:</label>
+		<input type="date" min="2015-07-01" max="2015-09-30" step="7" id="date" required name="date">
+		<br>
+		<!-- Phone number field -->
+		<label for="phone">Phone #:</label>
+		<input type="tel" id="phone" 
+				placeholder="555-555-5555" 
+				pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" />
+		<br>
+		<!-- URL field, must contain http://, https://, or ftp:// -->
+		<label for="url2">Enter URL:</label> 
+		<input id="url2" type="url"
+				placeholder="http://www.domain.com" 
+				pattern="(http|https|ftp)\:\/\/[a-zA-Z0-9\-\.\/]*"/>
+		<br>
+		<!-- Search field -->
+	    <label for="search2">Search:</label>
+	    <input type=search id="search2" results=5>
+	    <br>
+	    <!-- Numbers -->
+	    <label for="numbers">Number: </label>
+	    <input type="number" id="numbers" value="25.0" min="0" step="0.1" max="500"/>
+	    <br>
+	    <!-- Range (Slider) Field -->
+	    <label for="slider">Range:</label>
+		<input id="slider" type="range" min="0" max="10" step="1" value="5"
+			oninput="printValue('slider','rangeValue1')"/>
+		<output id="rangeValue1"/></output>
+		<br>
+		<!-- Range with ticks -->
+        <label for="slider2">Ticks:</label>
+        <input id="slider2" type="range" min="0" max="10" step="1" value="5"
+               list="ticks2" oninput="printValue('slider2', 'rangeValue2')"/>
+        <output id="rangeValue2"/></output>
+        <datalist id="ticks2">
+            <option>0</option>
+            <option>2</option>
+            <option>4</option>
+            <option>6</option>
+            <option>8</option>
+            <option>10</option>
+        </datalist>
+        <br>
+        <!-- Color Slider -->
+        <label for="sliderVolume">Slider:</label>
+        <input id="sliderVolume" type="range"  min="0" max="1" step="0.1" value="0.5" 
+				oninput="setVolume('sliderVolume','volumeValue')" class="custom"/>
+    	<output id="volumeValue"/></output>
+	</fieldset>
+
+	<button>Submit form</button>
+</form>	
+
+<script type="text/javascript">
+	var colorInputField = document.querySelector("#colorChooser");
+
+	colorInputField.addEventListener('input', function(evt) {
+		document.body.style.backgroundColor=this.value;}, false);
+
+ 	window.onload = function() {
+		printValue('slider','rangeValue1');
+		setVolume('sliderVolume','volumeValue');
+  	}
+  
+  	function printValue(sliderID, textbox) {
+		var x = document.getElementById(textbox);
+		var y = document.getElementById(sliderID);
+		x.value = y.value;
+  }
+
+
+	function setVolume(sliderID, textbox) {
+		 var x = document.getElementById(textbox);
+		 var y = document.getElementById(sliderID);
+		 x.value = y.value;
+
+		volumeListener(sliderID);
+	}
+	  
+	function volumeListener(id) {
+		var slider=document.getElementById(id);
+
+		var val = slider.value - slider.min / (slider.max -     
+	                                              slider.min);
+
+		val *= 100;
+		var cssProp = 'linear-gradient(to right  , lightGreen, blue '+val +'%, red)';
+
+		slider.style.backgroundImage = cssProp;
+	}
+
+</script>
+</body>
+</html>

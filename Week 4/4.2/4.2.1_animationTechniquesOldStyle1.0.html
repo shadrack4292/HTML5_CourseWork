@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>4.2.1 Animation Techniques</title>
+
+	<style type="text/css">
+		#MyCanvas {
+			border: 1px solid black;
+		}
+	</style>
+
+	<script type="text/javascript">
+	var canvas, ctx;
+	var rectangleX = 0, rectangleY = 0;
+	var colors = ['red', 'blue', 'green'];
+	var currentColor = 0;
+	var speedX = 10, speedY = 10;
+	var rectWidth = 100, rectHeight = 100;
+
+
+	function init(){
+		canvas = document.getElementById('MyCanvas');
+		ctx = canvas.getContext('2d');
+		ctx.fillStyle = "green";
+
+		setInterval(makeAnimation, 100);
+		setInterval(changeColor, 200);
+	}
+
+	function makeAnimation() {
+		// 1 - clear canvas
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		// 2 - draw
+		
+		ctx.fillRect(rectangleX, 0, rectWidth, rectHeight);
+		// 3 - move
+		rectangleX = rectangleX + speedX;
+		//rectangleY = rectangleY + speedY;
+
+		if(rectangleX+rectWidth >= canvas.width || rectangleX <= 0) {
+			speedX = -speedX;
+			//speedY = -speedY;
+		}
+
+	}
+
+	function changeColor() {
+		ctx.fillStyle= colors[currentColor%3];
+		currentColor++;
+	}
+
+	</script>
+</head>
+<body onload="init();">
+	<canvas id="MyCanvas" width="600" height="600"></canvas>
+</body>
+</html>
