@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+
+<style type="text/css">
+	fieldset {
+		width: 450px;
+		padding: 2px;
+	}
+
+</style>
+
+</head>
+<body>
+
+<fieldset>
+	<!-- output and oninput -->
+	<fieldset>
+	Try to change the values in the input fields and see how the <output> field is updated, without the need to JavaScript !<p>
+	Example 1 :<p>
+	<form oninput="o.value=a.value*b.value">
+		<input type="number" name="a" value="2"> x
+		<input type="number" name="b" value="3"> =
+		<output for="a b"    name="o">6</output>
+	</form>
+	  
+	  Example 2 :<p>
+	<form oninput="x.value=a.valueAsNumber+b.valueAsNumber">
+	<input type="range" name="a" value="50" />100
+	+<input type="number" name="b" value="50" />
+	=<output name="x" for="a b"></output>
+	</form>
+	</fieldset>
+	<!-- meter -->
+	<fieldset>
+		<p>Grades: <meter id="meter2" value="75" min="0" max="100" low="40" high="80" optimum="100">75%</meter> 
+		<br>
+		<input id="meter2range" type="range"
+				min="0" max="100" low="40" high="80" value="75" 
+				oninput="effect('meter2', 'meter2range')" > 
+		<output id="meter2val" for="meter2range"></output></p>
+	</fieldset>
+	<fieldset>
+	This example uses some JavaScript to simulate a download progress by changing in real time the value attribute.<p>
+	The progress below is defined like this:<br>
+	<pre>
+		&lt;progress id=pr value=100 max=1000&gt;
+	</pre>
+	Download progress:  <progress id="pr" value=100 min=0 max=1000></progress> 
+	</fieldset>
+</fieldset> 
+
+<script type="text/javascript">
+	
+	var i=0;
+	window.setInterval(function (a,b) {
+		i = (i+1) %1000;
+		document.getElementById('pr').value = i;
+	},1);
+
+	function effect(meter, meterrange) {
+	var currVal = document.getElementById(meterrange).value;
+	document.getElementById(meter).value =  currVal;
+	document.getElementById(meter+ "val").innerHTML = currVal;
+ }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <title>Example of using the validation API</title>
+    <style>
+    .myForm input:invalid { background-color: lightPink;}
+    .myForm input:valid { background-color:lightGreen; }
+    .myForm input:required {border: 2px solid red;}
+    .myForm input:optional {border: 2px solid green;}
+    .myForm label { display: inline-block; width: 140px; text-align: right; } 
+
+    fieldset { width: 40%; }
+</style>
+  </head>
+  <body>
+<form class="myForm">
+  <fieldset>
+    <legend>Example use of the validation API</legend>
+ <label for="password1" >Password:</label> <input type="password" id="password1" oninput="checkPasswords()" required>
+ <p>
+ <label for="password2">Repeat password:</label> <input type="password" id="password2" oninput="checkPasswords()" required>
+ <p>
+   <button>Submit</button>
+  </fieldset>
+</form>
+
+<!-- Custom Form Validity -->
+<form class="myForm2">
+<fieldset>
+  <label for="b">Enter a value between 10 and 20: </label>
+  <input type="number" name="text" id="b" min="10" max="20"
+        required oninput='validate();'/>
+  <button>Submit</button>
+  </form>
+</fieldset>
+
+
+
+<script> 
+ function checkPasswords() {
+ var password1 = document.getElementById('password1');
+ var password2 = document.getElementById('password2');
+ if (password1.value != password2.value) {
+ password2.setCustomValidity('Passwords do not match.');
+ } else {
+ password2.setCustomValidity('');
+ }
+ }
+
+ //Custom Validity
+ function validate() {
+  var input = document.getElementById('b');
+  var validityState_object = input.validity;
+
+  if(validityState_object.valueMissing) {
+     input.setCustomValidity('Please set an age (required)');
+  } 
+  else if (validityState_object.rangeUnderflow) {
+     input.setCustomValidity('Your value is too low');
+  } 
+  else if (validityState_object.rangeOverflow) {
+     input.setCustomValidity('Your value is too high');
+  } 
+  else if (validityState_object.typeMismatch) {
+     input.setCustomValidity('Type mismatch');
+  } 
+  else if (validityState_object.tooLong) {
+     input.setCustomValidity('Too long');
+  } 
+  else if (validityState_object.stepMismatch) {
+     input.setCustomValidity('stepMismatch');
+  } 
+  else if (validityState_object.patternMismatch) {
+     input.setCustomValidity('patternMismatch');
+  } 
+  else {
+     input.setCustomValidity('');
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>title</title>
+
+	<style type="text/css">
+	input:focus:invalid {
+		background-color: lightPink;
+	}
+    input:focus:valid {
+        background-color: lightGreen;
+    }
+    input:required:invalid {
+        border: 2px solid red;
+    }
+    input:required:valid {
+        border: 2px solid green;
+    }
+
+    fieldset {
+        width: 80%;
+    }
+
+    .form1 input:valid {
+        background:url('http://i.imgur.com/BJolppS.png')
+        no-repeat right top;
+    }
+    .form1 input:invalid {
+        background:url('http://i.imgur.com/7pIN7wz.png')
+        no-repeat right top;
+    }
+    .form2 input:valid {
+        background:url('http://i.imgur.com/BJolppS.png')
+        no-repeat right top;
+    }
+    .form2 input:invalid {
+        background:url('http://i.imgur.com/7pIN7wz.png')
+        no-repeat right top;
+    }
+    form input:required:valid {
+        background:url('http://i.imgur.com/BJolppS.png')
+        no-repeat right top;
+    }
+    form input:invalid {
+        background:url('http://i.imgur.com/7pIN7wz.png')
+        no-repeat right top;
+    }
+    form input:focus {
+        padding-right: 70px;
+    }
+    form input {
+        transition: padding .25s;
+    }
+
+	</style>
+</head>
+<body>
+    <fieldset>
+        <form class="form1" action="#" method="post">
+            <fieldset>
+                <legend>Intro to forms (5.2.1 - 5.5.5)</legend>
+                <!-- First Name Field: autocomplete is on, required -->
+                <label for="firstName">First name:</label>
+                <input type="text" id="firstName" name="firstName" form="form1" 
+                        autocomplete="on" title="Enter first name" required autofocus/>
+                <p>
+                <!-- Last Name field: autocomplete is off, autofocus, required -->
+                <label for="lastName">Last name:</label>
+                <input type="text" id="lastName" name="lastName" form="form1" 
+                    autocomplete="off" title="Enter last name" required />
+            </fieldset>
+            <!-- Check box field -->
+            <fieldset>
+                 <legend>Choose option</legend>
+                 <label for="free">Free registering</label>
+                 <input type="checkbox" id="free" />
+                 <label for="premium">Premium</label>
+                 <input type="checkbox" id="premium" />
+             
+            </fieldset>
+            <fieldset>
+            	<legend>List attribute</legend>
+        	    <label for="mybrowser">Preferred browser</label>
+        	    <input list="browsers" id="mybrowser" title="Select preferred browser." />
+        		<datalist id="browsers">
+        			<option value="Internet Explorer">
+        			<option value="Firefox">
+        			<option value="Chrome">
+        			<option value="Opera">
+        			<option value="Safari">
+         		</datalist>
+                <button type="submit">Send form</button>
+            </fieldset>
+        </form>
+    </fieldset>
+    <!-- 5.5.6 regular expressions pattern -->
+    <fieldset>
+        <form class="form2" action="#" method="post">
+        <legend>Patterns (5.5.6 - 5.5.14)</legend>
+        <fieldset>
+            <legend>Basic Patterns</legend>
+            <label for="country_code">Country Code</label>
+            <font size="2"> (3 letters.) </font>
+            <br>
+            <input id="country_code" type="text" name="country_code" required
+                    pattern="[A-Za-z]{3}" 
+                    title="3 letter country code"
+                    placeholder="3 Letters" 
+                    title="Enter the 3 lettered country code" />
+            <br>
+            <!-- Web site field -->
+            <label for="website">Web site</label>
+            <font size="2"> (only http, https, or ftp allowed.) </font>
+            <br>
+            <input id="website" type="url" name="url" required
+                        pattern="(http|https|ftp)\:\/\/[a-zA-Z0-9\-\.\/]*" 
+                        title="only http, https or ftp allowed"
+                        placeholder="http(s):// or ftp://" 
+                        title="Must include http:// or https:// or ftp://" />
+
+        </fieldset>
+        <fieldset>
+            <input id="mydate" name="mydate"
+                   type="date"
+                   min="2012-01-01"
+                   max="2013-01-01"
+                   value="2012-01-01"
+            />
+            <input name="time" id="time" type="time"
+                    min="09:00"
+                    max="17:00"
+                    value="12:00"
+            />
+            <input id="range" name="range" type="range" min="0" max="100" step="5"/>
+        </fieldset>
+        <!-- Multiple Attributes -->
+        <fieldset>
+            <legend>With the multiple attribute </legend>
+            <label for="emailmultiple">Enter several email addresses: </label>
+            <input type="email" name="myemail" title="you can enter multiple emails addresses, separated by a comma" multiple/>
+        </fieldset>
+        <!-- Without Multiple Attributes -->
+        <fieldset>
+            <legend>Without the multiple attribute </legend>
+            <label>Enter several email addresses: </label>
+            <input type="email" name="myemail" title="only one address please!"/>
+        </fieldset>
+        <button type="submit">Send form</button>
+        </form>
+    </fieldset>
+    <!-- option course stuff -->
+    <!-- formaction -->
+    <fieldset>
+        <form class="form3" action="getAction.php" method="get">
+            First name: <input type="text" name="firstName"><br>
+            Last name: <input type="text" name="lastName" required><br>
+            <input type="submit"  value="Submit using GET">
+            <input type="submit" formmethod="post" formaction="postAction.php" value="Submit using POST">
+        </form>
+        
+        <p><b>Note:</b> The formmethod attribute is not supported in IE.</p>
+    </fieldset>
+    <!-- formnovalidate -->
+    <fieldset>
+        <form class="form4" action="form.php">
+           <fieldset>
+                <legend>Example of formnovalidate attribute</legend>
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" id="email"/><br>
+                <input type="submit" value="Submit" /><br>
+                <input type="submit"
+                    formnovalidate 
+                    value="Submit without validation" />
+            </fieldset>
+        </form>
+    </fieldset>
+    <!-- formtarget -->
+        <!-- 
+        Possible values for the formtarget attributes are:
+            _blank: the response is displayed in a new window or tab
+            _self: the response is displayed in the same frame (this is default)
+            _parent: the response is displayed in the parent frame
+            _top: the response is displayed in the full body of the window
+            framename: the response is displayed in a named iframe
+        -->
+    <fieldset>
+        <form class="form5" action="defaultAction.php">
+            <label for="firstName">First name:</label> <input type="text" name="firstName" id="firstName"><br>
+            <label for="lastName">Last name:</label> <input type="text" name="lastName" id="lastName"><br>
+            <input type="submit" value="Submit as usual">
+            <input type="submit" formtarget="_blank" value="Submit but show results in a new window/tab">
+        </form>
+        <p><b>Note:</b> The formtarget attribute is not supported in IE.</p>
+    </fieldset>
+    <!-- enctype -->
+    <fieldset>
+        <form class="form6" action="default.php" method="post" enctype="multipart/form-data">
+            First name: <input type="text" name="fname" required><br>
+            Last name: <input type="text" name="lname"><br>
+            <input type="submit" value="Submit">
+        </form>
+        <p><b>Note:</b> The enctype is used for sending multiple file through remote server, think encryption.</p>
+    </fieldset>
+</body>
+</html>
