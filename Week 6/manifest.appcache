@@ -1,0 +1,55 @@
+CACHE MANIFEST
+
+#version 1.0 7-10-2015
+
+CACHE:
+
+#images
+http://bigo.support/
+http://bigo.support/images/cloudVision.jpg
+http://bigo.support/images/template-content/002-2.png
+http://bigo.support/images/template-content/003-2.png
+http://bigo.support/images/template-content/Fotolia_4837649_X-02.jpg
+http://bigo.support/images/template-content/cogs.jpg
+https://my.clickdesk.com/img/ajax-loader-cursor.gif
+https://my.clickdesk.com/img/warning.png
+
+#internal HTML documents
+
+
+#style sheets
+http://bigo.support/components/com_k2/css/k2.css
+http://bigo.support/plugins/system/jcemediabox/css/jcemediabox.css?08ebf8a171d1a19317c2b1b68ebfed96
+http://bigo.support/plugins/system/jcemediabox/themes/standard/css/style.css?67fbaeceb987316db98c64feea18d9fa
+http://bigo.support/templates/lb_v1_60/css/template.css
+http://bigo.support/templates/lb_v1_60/css/template.responsive.css
+http://bigo.support/templates/system/css/general.css
+http://bigo.support/templates/system/css/system.css
+https://d1gwclp1pmzk26.cloudfront.net/widget-css-v1.4/minimalistic-v2/packed/3475a7.css
+
+#style sheet images
+
+
+#javascript files
+http://my.clickdesk.com/clickdesk-ui/browser/livechat-new.js
+http://bigo.support/media/system/js/mootools-core.js
+http://bigo.support/media/system/js/core.js
+http://bigo.support/media/jui/js/jquery.min.js
+http://bigo.support/media/jui/js/jquery-noconflict.js
+http://bigo.support/media/jui/js/jquery-migrate.min.js
+http://bigo.support/components/com_k2/js/k2.js?v2.6.8&sitepath=/
+http://bigo.support/media/system/js/mootools-more.js
+http://bigo.support/media/system/js/caption.js
+http://bigo.support/plugins/system/jcemediabox/js/jcemediabox.js?bab2623533a38959d58ee39b77ca85cd
+http://bigo.support/templates/lb_v1_60/jquery.js
+http://bigo.support/templates/lb_v1_60/script.js
+http://bigo.support/templates/lb_v1_60/script.responsive.js
+http://bigo.support/templates/lb_v1_60/modules.js
+https://d1gwclp1pmzk26.cloudfront.net/livechat-cloud-new.js
+https://d1gwclp1pmzk26.cloudfront.net/widget-js-v1.128/browser/min/livechat-v2.js
+http://my.clickdesk.com/rest/visitor/widget/preferences?widg%E2%80%A6oYXRyDwsSBXVzZXJzGI--w-0CDA&url=http%3A%2F%2Fbigo.support%2F
+https://d1gwclp1pmzk26.cloudfront.net/widget-js-v1.128/templates/templates_cmpld/minimalistic.js.min.js
+http://my.clickdesk.com/rest/visitor/proactive?widget_id=all%E2%80%A6a2NoYXRyDwsSBXVzZXJzGI--w-0CDA&callback=json8387842321823689
+
+NETWORK:
+*
